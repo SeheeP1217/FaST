@@ -14,8 +14,9 @@ import SignUpContainer from './containers/SignUpContainer';
 import LoginContainer from './containers/LoginContainer';
 import FollowContainer from './containers/FollowContainer';
 import TestPage from './pages/TestPage';
+import UserModifyContainer from './containers/UserModifyContainer';
 
-function Test() {
+function Router() {
   return (
     <>
       <Header />
@@ -30,6 +31,7 @@ function Test() {
           <Route path="/login" element={<LoginContainer />} />
           <Route path="/follow" element={<FollowContainer />} />
           <Route path="/test" element={<TestPage />} />
+          <Route path="/modify" element={<UserModifyContainer />} />
         </Routes>
       </div>
       <Footer />
@@ -37,4 +39,4 @@ function Test() {
   );
 }
 
-export default Test;
+export default Router;
