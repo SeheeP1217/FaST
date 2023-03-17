@@ -24,18 +24,19 @@ public class OauthController {
     private static final Logger logger = LoggerFactory.getLogger(OauthController.class);
     private final UserRepository userRepository;
 
-    @GetMapping("/success")
+    @GetMapping("/login/oauth2/code/kakao")
     private ResponseEntity<Map<String, Object>> getUser(@RequestParam("code") String code, @RequestParam("email") String email ) {
 
         Map<String, Object> resultMap = new HashMap<>();
         HttpStatus status = HttpStatus.OK;
 
+        logger.info("제발");
         logger.info("code {}",code);
         logger.info("email {}",email);
         User user = userRepository.findByEmail(email).get();
-        if (userRepository.existsByEmail(user.getEmail())) {
-            throw new DuplicateMemberException("이미 가입되어 있는 유저입니다.");
-        }
+//        if (userRepository.existsByEmail(user.getEmail())) {
+//            throw new DuplicateMemberException("이미 가입되어 있는 유저입니다.");
+//        }
 
 
         TokenDto TokenResponseDto = null;

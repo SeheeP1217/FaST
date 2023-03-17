@@ -54,12 +54,14 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 
 
     protected String determineTargetUrl(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
-        String targetUrl = "/success";
+        String targetUrl = "/";
 
+        System.out.println(authentication);
         String jwt = tokenProvider.createToken(authentication);
         PrincipalDetails principalDetails = (PrincipalDetails) authentication.getPrincipal();
         String email = principalDetails.getUser().getEmail();
-
+        User user = userRepository.findByEmail(email).get();
+        String provider = user.getProvider();
 
         return UriComponentsBuilder.fromUriString(targetUrl)
                 .queryParam("code", jwt)
